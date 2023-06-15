@@ -1,1 +1,107 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+    --bs-btn-bg: #005CA8 !important;
+}
+
+body,
+html {
+    font-size: 14px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.middle-section {
+    padding-top: 72px;
+    position: relative;
+
+    // width: 100vw;
+    .sidebar-section {
+        position: fixed;
+        top: 72px;
+        bottom: 0;
+        left: 0;
+        min-width: 260px;
+        height: 100%;
+        // background-color: rgb(243, 243, 243);
+    }
+
+    .main-content {
+        width: calc(100% - 260px);
+        margin-left: 260px;
+        min-height: calc(100vh - 72px);
+        display: flex;
+        flex-direction: column;
+
+        .main-section {
+            flex: 1;
+        }
+    }
+}
+
+.footer {
+    padding: 10px 20px;
+    color: #b5b5b5;
+}
+
+.header-section {
+    position: relative;
+
+    i {
+        position: absolute;
+        right: 20px;
+        top: 5px;
+        cursor: pointer;
+        padding: 5px;
+    }
+}
+
+.todoList {
+    .task {
+        font-size: 16px;
+    }
+}
+
+.active-link {
+    color: #005CA8;
+    font-weight: bold;
+}
+
+.remove-item-action {
+    position: absolute;
+    right: 25px;
+    bottom: 20px;
+}
+
+.mr-btn-round {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+    border: 0;
+
+    i {
+        font-size: 30px;
+        color: #FFF;
+    }
+
+    &.remove-action {
+        background-image: linear-gradient(to bottom, #eb3941, #f15e64, #e14e53, #e2373f);
+    }
+}
+
+.dropdown-menu {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0), 0 8px 10px 1px rgba(0, 0, 0, 0.1), 0 3px 14px 2px rgba(0, 0, 0, 0.1);
+    border: 0 !important;
+}

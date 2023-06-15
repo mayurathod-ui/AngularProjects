@@ -1,0 +1,60 @@
+.primary-shadow {
+    box-shadow: 0 3px 8px 0 rgba(0, 106, 194, 0.2);
+}
+
+.todo-list-wrap {
+    margin: 0 auto;
+    width: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-wrap-inner {
+    padding: 2rem;
+    position: relative;
+
+    &.todo-body {
+        padding-bottom: 5rem;
+    }
+}
+
+.task {
+    position: relative;
+    &:first-child {
+        .task-list {
+            border: 0;
+        }
+    }
+
+    .task-list {
+        display: block;
+        padding: 1rem 0;
+        border-top: 1px solid #dee2e6;
+        display: flex;
+        flex-direction: row;
+
+        .itemDone {
+            opacity: 0.7;
+            pointer-events: none;
+
+            P {
+                text-decoration: line-through;
+            }
+        }
+
+        .itemnotdone {
+            opacity: 1;
+            P {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .quick-action {
+        position: absolute;
+        right: 0;
+        top: 1rem;
+    }
+}

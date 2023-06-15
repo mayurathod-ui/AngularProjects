@@ -1,0 +1,60 @@
+<div class="todo-list-wrap">
+    <div class="todo-wrap-inner todo-header border-bottom">
+        <h4 class="text-center mb-4">Todo List</h4>
+        <div class="row">
+            <div class="col header-section">
+                <!-- (ngModelChange)="onfilterItems($event)" -->
+                <input class="form-control form-control-lg" id="taskName" name="itemText" [(ngModel)]="todoObject.itemText" type="text" (ngModelChange)="onfilterItems($event)"  placeholder="Add a new task">
+                <!-- <i class="bi bi-search" (click)="onfilterItems()"></i> -->
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-lg btn-primary primary-shadow" (click)="addTodoItem()">Add</button>
+            </div>
+        </div>
+        <div class="row d-none">
+            <div class="col">
+                <input class="form-control form-control-lg" type="text" placeholder="Seaerch...">
+            </div>
+        </div>
+    </div>
+    <div class="todo-wrap-inner todo-body">
+        <ul class="list-unstyled m-0 todoList">
+            <ng-container *ngIf="filterItems.length === 0">
+                <li class="task text-center">
+                    <img class="my-4" src="assets/Images/address-book@2x.png" width="50">
+                    <p class="fw-bold text-center">You haven’t added any Todo item.</p>
+                </li>
+            </ng-container>
+            <ng-container *ngIf="filterItems.length !== 0">
+                <li class="task" *ngFor="let item of filterItems; let i = index" id="mylist">
+                    <label class="task-list">
+                        <div class="items-caption"  [ngClass]="{'itemDone': setItemIndex.includes(i)}">
+                            <input type="checkbox" class="float-start" id="{{item.itemID}}" [(ngModel)]="item.isChecked" style="margin-top: 6px;">
+                            <p class="d-inline-block m-0 ms-2">{{item.itemText}}</p>
+                        </div> 
+                        <div class="ms-auto quick-action">
+                            <div class="dropdown">
+                                <button class="btn btn-link" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" (click)="processDone(i)">{{setItemIndex.includes(i)? 'Not Done' : 'Done'}}</a></li>
+                                    <li><a class="dropdown-item" (click)="editTodo(i)">Edit</a></li>
+                                    <li><a class="dropdown-item" (click)="removesingletodo(i)">Remove</a></li>
+                                </ul>
+                            </div>
+                        </div>                       
+                    </label>
+                    
+                </li>
+            </ng-container>
+        </ul>
+        <div class="remove-item-action" *ngIf="isCheckedCheckbox()">
+            <button class="mr-btn-round remove-action" (click)="removeItems()">
+                <!-- <i class="bi bi-trash"></i> -->
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    </div>
+</div>
