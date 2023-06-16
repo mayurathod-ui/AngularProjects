@@ -15,28 +15,16 @@ export class TodoListComponent implements OnInit {
   todoObject: any = { itemID: '0', itemText: '' };
   public todoItemDone = false;
   newTodo: string = '';
+  index:number = 0;
+
+  updateRecord: boolean = false;
 
 
   saveData() {
     localStorage.setItem("todoList", JSON.stringify(this.todoItems))
   }
 
-  addTodoItem() {
-    // debugger
-    this.todoObject.itemID = this.todoItems.length + 1;
-    this.todoItems.unshift(this.todoObject);
-    this.saveData();
-    this.todoObject = { itemID: '', itemText: '' }
-    this.filterItems = this.todoItems;
-  }
 
-  editTodo(index: number) {
-    let filterData = this.todoItems[index];
-    this.todoObject.itemText = filterData.itemText;
-    this.todoObject.itemID = filterData.itemID;
-    // console.log(this.todoObject);
-
-  }
 
   isCheckedCheckbox() {
     const checkedCount = this.todoItems.filter(m => m.isChecked == true).length;
@@ -57,8 +45,6 @@ export class TodoListComponent implements OnInit {
 
   onfilterItems(search: string) {
     const filterData = this.todoItems.filter(f => f.itemText.toLowerCase().includes(search.toLowerCase()));
-    console.log(filterData);
-
     if (filterData.length !== 0) {
       this.filterItems = filterData;
     }
@@ -78,13 +64,29 @@ export class TodoListComponent implements OnInit {
   }
 
   removesingletodo(index: number) {
-    // this.setItemIndex.filter((i) => {return i !== index});
-    debugger
     this.filterItems[index].isChecked = false;
     this.todoItems.splice(index, 1);
     this.filterItems = this.todoItems
-    // this.saveData();     
-    console.log(this.filterItems[index].isChecked);
+  }
+
+  addTodoItem() {
+    if (this.updateRecord) {
+      this.filterItems[this.index].itemText = this.todoObject.itemText;
+      this.filterItems[this.index].isChecked = false;
+    } else {
+      this.todoObject.itemID = this.todoItems.length + 1;
+      this.todoItems.unshift(this.todoObject);
+      this.saveData();
+      this.todoObject = { itemID: '', itemText: '' }
+      this.filterItems = this.todoItems;
+    }
+  }
+
+  editTodo(index: number) {
+    this.updateRecord = true
+    this.index = index;
+    let filterData = this.todoItems[index];
+    this.todoObject.itemText = filterData.itemText;
   }
 
   ngOnInit(): void {
@@ -94,6 +96,4 @@ export class TodoListComponent implements OnInit {
       this.filterItems = this.todoItems;
     }
   }
-
-
 }
