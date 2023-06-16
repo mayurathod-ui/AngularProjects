@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TodoListComponent implements OnInit {
   public setItemID: any;
   public setItemIndex: any[] = [];
-  
+
   todoItems: any[] = [];
   filterItems: any[] = [];  // for filtering data
   todoObject: any = { itemID: '0', itemText: '' };
@@ -27,14 +27,15 @@ export class TodoListComponent implements OnInit {
     this.todoItems.unshift(this.todoObject);
     this.saveData();
     this.todoObject = { itemID: '', itemText: '' }
+    this.filterItems = this.todoItems;
   }
 
-  editTodo(index:number){
+  editTodo(index: number) {
     let filterData = this.todoItems[index];
     this.todoObject.itemText = filterData.itemText;
     this.todoObject.itemID = filterData.itemID;
     // console.log(this.todoObject);
-    
+
   }
 
   isCheckedCheckbox() {
@@ -47,16 +48,17 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  removeItems() {    
+  removeItems() {
     const checkRecords = this.todoItems.filter(m => !m.isChecked);
     this.todoItems = checkRecords;
+    this.filterItems = this.todoItems
     this.saveData();
   }
 
   onfilterItems(search: string) {
     const filterData = this.todoItems.filter(f => f.itemText.toLowerCase().includes(search.toLowerCase()));
     console.log(filterData);
-    
+
     if (filterData.length !== 0) {
       this.filterItems = filterData;
     }
@@ -68,8 +70,8 @@ export class TodoListComponent implements OnInit {
   }
 
   processDone(index: number) {
-    if(this.setItemIndex.includes(index)) {
-      this.setItemIndex = this.setItemIndex.filter((i) => {return i !== index});
+    if (this.setItemIndex.includes(index)) {
+      this.setItemIndex = this.setItemIndex.filter((i) => { return i !== index });
     } else {
       this.setItemIndex.push(index);
     }
@@ -77,8 +79,12 @@ export class TodoListComponent implements OnInit {
 
   removesingletodo(index: number) {
     // this.setItemIndex.filter((i) => {return i !== index});
-    this.setItemIndex.splice(index, 1);
-    this.saveData();     
+    debugger
+    this.filterItems[index].isChecked = false;
+    this.todoItems.splice(index, 1);
+    this.filterItems = this.todoItems
+    // this.saveData();     
+    console.log(this.filterItems[index].isChecked);
   }
 
   ngOnInit(): void {
@@ -89,5 +95,5 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  
+
 }

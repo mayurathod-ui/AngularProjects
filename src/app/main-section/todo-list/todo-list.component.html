@@ -19,18 +19,19 @@
     </div>
     <div class="todo-wrap-inner todo-body">
         <ul class="list-unstyled m-0 todoList">
-            <ng-container *ngIf="filterItems.length === 0">
+            <ng-container *ngIf="todoItems.length === 0">
                 <li class="task text-center">
                     <img class="my-4" src="assets/Images/address-book@2x.png" width="50">
                     <p class="fw-bold text-center">You haven’t added any Todo item.</p>
                 </li>
             </ng-container>
-            <ng-container *ngIf="filterItems.length !== 0">
+            <ng-container *ngIf="todoItems.length !== 0">
                 <li class="task" *ngFor="let item of filterItems; let i = index" id="mylist">
                     <label class="task-list">
                         <div class="items-caption"  [ngClass]="{'itemDone': setItemIndex.includes(i)}">
                             <input type="checkbox" class="float-start" id="{{item.itemID}}" [(ngModel)]="item.isChecked" style="margin-top: 6px;">
                             <p class="d-inline-block m-0 ms-2">{{item.itemText}}</p>
+                            {{item | json}}
                         </div> 
                         <div class="ms-auto quick-action">
                             <div class="dropdown">
