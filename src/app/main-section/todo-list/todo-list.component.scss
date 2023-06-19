@@ -16,8 +16,14 @@
     position: relative;
 
     &.todo-body {
+        padding-top: 4rem;
         padding-bottom: 5rem;
     }
+}
+
+.filterSection{
+    position: absolute;
+    top: 1.5rem;
 }
 
 .task {

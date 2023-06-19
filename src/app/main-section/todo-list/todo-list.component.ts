@@ -14,17 +14,16 @@ export class TodoListComponent implements OnInit {
   filterItems: any[] = [];  // for filtering data
   todoObject: any = { itemID: '0', itemText: '' };
   public todoItemDone = false;
-  newTodo: string = '';
+  // newTodo: string = '';
+  
+  // for record update
   index:number = 0;
-
   updateRecord: boolean = false;
 
 
   saveData() {
     localStorage.setItem("todoList", JSON.stringify(this.todoItems))
   }
-
-
 
   isCheckedCheckbox() {
     const checkedCount = this.todoItems.filter(m => m.isChecked == true).length;
@@ -73,6 +72,10 @@ export class TodoListComponent implements OnInit {
     if (this.updateRecord) {
       this.filterItems[this.index].itemText = this.todoObject.itemText;
       this.filterItems[this.index].isChecked = false;
+      this.saveData();
+      this.todoObject = { itemID: '', itemText: '' };
+      this.updateRecord = false;     
+             
     } else {
       this.todoObject.itemID = this.todoItems.length + 1;
       this.todoItems.unshift(this.todoObject);
