@@ -20,6 +20,7 @@ export class TodoListComponent implements OnInit {
   index:number = 0;
   updateRecord: boolean = false;
 
+  selectAll: boolean = false;
 
   saveData() {
     localStorage.setItem("todoList", JSON.stringify(this.todoItems))
@@ -91,6 +92,18 @@ export class TodoListComponent implements OnInit {
     let filterData = this.todoItems[index];
     this.todoObject.itemText = filterData.itemText;
   }
+
+  toggleSelectAll() {
+    //  this.filterItems.forEach(check => { 
+    //    console.log(check);      
+    //    check.isChecked = this.selectAll});
+
+    for(let check of this.filterItems){
+      check.isChecked = this.selectAll
+    }
+    // this.filterItems.forEach(obj => obj.isChecked = this.selectAll);
+    
+  }  
 
   ngOnInit(): void {
     const localData = localStorage.getItem("todoList");
