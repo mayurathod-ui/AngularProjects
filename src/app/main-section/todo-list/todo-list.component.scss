@@ -64,3 +64,14 @@
         top: 1rem;
     }
 }
+
+.ag-list{
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.header-center{
+    .ag-header-cell-label{
+        justify-content: center;
+    }
+}

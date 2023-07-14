@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ColDef, GetRowIdFunc, GetRowIdParams, GridApi, GridReadyEvent } from 'ag-grid-community';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,20 +7,63 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
+  // ag-grid variables
+  columnDefs: any[];
+  private gridApi!: GridApi;
+
   public setItemID: any;
   public setItemIndex: any[] = [];
-
+  public rowData: any;
   todoItems: any[] = [];
   filterItems: any[] = [];  // for filtering data
   todoObject: any = { itemID: '0', itemText: '' };
   public todoItemDone = false;
-  // newTodo: string = '';
-  
-  // for record update
-  index:number = 0;
-  updateRecord: boolean = false;
 
+  // DefaultColDef sets props common to all Columns
+  public defaultColDef: any;
+  // newTodo: string = '';
+
+  // for record update
+  index: number = 0;
+  updateRecord: boolean = false;
   selectAll: boolean = false;
+
+
+
+
+  constructor() {
+    // Each Column Definition results in one Column.
+    this.columnDefs = [
+      { headerName: 'ToDoList', field: 'itemText', flex: 1 },
+      {
+        headerName: 'Priority', width: 150, headerClass: "header-center", cellClass: 'text-center',
+        cellRenderer: (params: any) => {
+          console.log(params.data);
+
+          if (params.data.isChecked) {
+            console.log('if');
+            return '<span><i class="bi bi-check-circle-fill text-success fs-5"></i></span>'
+          } else {
+            console.log('else');
+            return '<span><i class="bi bi-check-circle fs-5"></i></span>'
+          }
+        }
+      },
+      { headerName: 'Action', width: 150 }
+    ];
+    this.defaultColDef = {
+      enableValue: true,
+      enableRowGroup: true,
+      sortable: false,
+      resizable: true,
+      lockPosition: true,
+      tooltip: (p: any) => {
+        return p.value;
+      },
+      enableBrowserTooltips: true
+    };
+    
+  }
 
   saveData() {
     localStorage.setItem("todoList", JSON.stringify(this.todoItems))
@@ -75,8 +118,8 @@ export class TodoListComponent implements OnInit {
       this.filterItems[this.index].isChecked = false;
       this.saveData();
       this.todoObject = { itemID: '', itemText: '' };
-      this.updateRecord = false;     
-             
+      this.updateRecord = false;
+
     } else {
       this.todoObject.itemID = this.todoItems.length + 1;
       this.todoItems.unshift(this.todoObject);
@@ -98,12 +141,20 @@ export class TodoListComponent implements OnInit {
     //    console.log(check);      
     //    check.isChecked = this.selectAll});
 
-    for(let check of this.filterItems){
+    for (let check of this.filterItems) {
       check.isChecked = this.selectAll
     }
     // this.filterItems.forEach(obj => obj.isChecked = this.selectAll);
-    
-  }  
+  }
+
+  // ag-grid cell renderer function
+  updateAgGrid(ID: any) {
+    this.gridApi.applyTransaction({ update: this.filterItems });
+  }
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
+  }
 
   ngOnInit(): void {
     const localData = localStorage.getItem("todoList");
@@ -111,5 +162,7 @@ export class TodoListComponent implements OnInit {
       this.todoItems = JSON.parse(localData);
       this.filterItems = this.todoItems;
     }
+    this.rowData = this.filterItems;
+    console.log("row dTA ", this.rowData);
   }
 }
