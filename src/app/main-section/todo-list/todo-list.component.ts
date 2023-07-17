@@ -38,18 +38,18 @@ export class TodoListComponent implements OnInit {
       {
         headerName: 'Priority', width: 150, headerClass: "header-center", cellClass: 'text-center',
         cellRenderer: (params: any) => {
-          console.log(params.data);
-
           if (params.data.isChecked) {
-            console.log('if');
-            return '<span><i class="bi bi-check-circle-fill text-success fs-5"></i></span>'
+            return '<i class="bi bi-check-circle-fill text-success fs-5"></i>'
           } else {
-            console.log('else');
-            return '<span><i class="bi bi-check-circle fs-5"></i></span>'
+            return '<i class="bi bi-check-circle fs-5"></i>'
           }
         }
       },
-      { headerName: 'Action', width: 150 }
+      { headerName: 'Action', width: 150,
+        cellRenderer:(param:any) => {
+          return '<i class="bi bi-pencil-square fs-5 mr-4 pointer"></i>'
+        } 
+      }
     ];
     this.defaultColDef = {
       enableValue: true,
