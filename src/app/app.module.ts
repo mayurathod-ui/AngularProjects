@@ -21,7 +21,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FooterComponent,
     SidebarComponent,
     TodoListComponent,
-    OfflinePreferencesComponent
+    OfflinePreferencesComponent,
   ],
   imports: [
     BrowserModule,
