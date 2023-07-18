@@ -7,11 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import {TodoListComponent} from './main-section/todo-list/todo-list.component'
-import {OfflinePreferencesComponent} from './main-section/offline-preferences/offline-preferences.component'
-import {AgGridModule} from 'ag-grid-angular'
+import {MainSectionModule} from './main-section/main-section.module';
+import {AgGridModule} from 'ag-grid-angular';
 import { AppComponent } from './app.component';
-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
@@ -20,8 +18,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    TodoListComponent,
-    OfflinePreferencesComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +25,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     NgbModule,    
     FormsModule,
     Ng2SearchPipeModule,
-    AgGridModule
+    AgGridModule,    
+    MainSectionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { OfflinePreferencesComponent } from './offline-preferences/offline-preferences.component';
 import { DirectoryComponent } from './employees-directory/directory/directory.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AgGridModule} from 'ag-grid-angular';
+
 
 
 
@@ -13,7 +16,10 @@ import { DirectoryComponent } from './employees-directory/directory/directory.co
     DirectoryComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    FormsModule,
+    AgGridModule
+  ],
+  exports:[]
 })
 export class MainSectionModule { }

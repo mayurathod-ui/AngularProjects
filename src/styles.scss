@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap');
 @import '../node_modules/ag-grid-community/styles/ag-grid.css';
 @import '../node_modules//ag-grid-community/styles/ag-theme-alpine.css';
 
 @import 'bootstrap/scss/bootstrap';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-
+@import './assets/scsss/form-inputs';
 :root {
     --bs-btn-bg: #005CA8 !important;
 }
@@ -14,6 +15,9 @@
 body,
 html {
     font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    background-color: #F5F7FA;
 }
 
 .header {
@@ -21,7 +25,7 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 999;
 }
 
 .middle-section {
@@ -37,6 +41,7 @@ html {
         min-width: 260px;
         height: 100%;
         // background-color: rgb(243, 243, 243);
+        background-color: #FFF;
     }
 
     .main-content {
@@ -106,4 +111,202 @@ html {
 .dropdown-menu {
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0), 0 8px 10px 1px rgba(0, 0, 0, 0.1), 0 3px 14px 2px rgba(0, 0, 0, 0.1);
     border: 0 !important;
+}
+
+
+
+
+// Employee Directory Project Start
+
+.card {
+    border-radius: 3px;
+}
+
+.filter-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 52px;
+
+    .filter-inner {
+        width: 200px;
+        padding: 5px 15px;
+        box-sizing: border-box;
+        border-right: 1px solid rgba(0, 0, 0, 0.175);
+
+        .lbl-filter {
+            font-size: 13px;
+            color: #a5a5a5;
+        }
+
+        .filter {
+            width: 100%;
+
+            &.dropdown {
+                .btn-dropdown {
+                    background: transparent;
+                    color: inherit;
+                    border: 0;
+                    height: 100%;
+                    width: 100%;
+                    text-align: left;
+                    padding: 0;
+                }
+                .dropdown-menu{
+                    width: 200px;
+                    transform: translate(-15px, 30px) !important;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+
+    .search-inner {
+        flex: 1;
+        height: 100%;
+        position: relative;
+
+        .search-input {
+            border: 0;
+            height: 100%;
+            padding-left: 0;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .filter-icon {
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 16px;
+            color: #a5a5a5;
+
+            &.cancel {
+                cursor: pointer;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.employee-list-wrap {
+    // border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 3px;
+    // overflow: hidden;
+
+    .employee-box {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .card {
+            border-radius: 0;
+            width: calc(100% / 6);
+            border: 0;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+
+            .card-body {
+                background-color: #FFF;
+            }
+        }
+    }
+}
+
+.emp-img {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 2px solid #FFF;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.175);
+    position: relative;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.emp-details {
+    text-align: center;
+    margin-top: 15px;
+
+    .emp-name {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .emp-position {
+        color: #a5a5a5;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+}
+
+.emp-top-section {
+    position: relative;
+    max-width: 100px;
+    margin: 0 auto;
+}
+
+.available {
+    width: 16px;
+    height: 16px;
+    background: #95dd00;
+    display: flex;
+    position: absolute;
+    border-radius: 50%;
+    right: 16px;
+    border: 2px solid #FFF;
+    bottom: 0;
+    z-index: 9;
+}
+
+.emp-details-popover {
+    position: absolute;
+    right: 0;
+    width: 300px;
+    transform: translate(299px, -15px);
+    z-index: 99;
+    background: #FFFF;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.175);
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    padding: 30px 20px;
+    display: none;
+    &.show{
+        display: block;
+    }
+
+    .emp-popover-img {
+        position: relative;
+        margin-bottom: 10px;
+
+        .available {
+            transform: translate(-73px, -5px);
+        }
+    }
+
+    .emp-more-details {
+        display: flex;
+        flex-direction: column;
+
+        .small {
+            font-size: 12px;
+            color: #a5a5a5;
+        }
+        span:nth-child(2){
+            font-weight: 600;
+        }
+    }
 }
