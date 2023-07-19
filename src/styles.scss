@@ -10,7 +10,10 @@
 @import './assets/scsss/form-inputs';
 :root {
     --bs-btn-bg: #005CA8 !important;
+    --grey-text: #a5a5a5;
 }
+
+.text-grey{color: var(--grey-text);}
 
 body,
 html {
@@ -136,7 +139,7 @@ html {
 
         .lbl-filter {
             font-size: 13px;
-            color: #a5a5a5;
+            color: var(--grey-text);
         }
 
         .filter {
@@ -185,7 +188,7 @@ html {
 
         i {
             font-size: 16px;
-            color: #a5a5a5;
+            color: var(--grey-text);
 
             &.cancel {
                 cursor: pointer;
@@ -248,7 +251,7 @@ html {
     }
 
     .emp-position {
-        color: #a5a5a5;
+        color: var(--grey-text);
         font-size: 13px;
         margin-bottom: 0;
     }
@@ -303,7 +306,7 @@ html {
 
         .small {
             font-size: 12px;
-            color: #a5a5a5;
+            color: var(--grey-text);
         }
         span:nth-child(2){
             font-weight: 600;

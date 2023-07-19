@@ -5,7 +5,7 @@ import { OfflinePreferencesComponent } from './offline-preferences/offline-prefe
 import { DirectoryComponent } from './employees-directory/directory/directory.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AgGridModule} from 'ag-grid-angular';
-
+import {HttpClientModule} from '@angular/common/http'
 
 
 
@@ -18,7 +18,9 @@ import {AgGridModule} from 'ag-grid-angular';
   imports: [
     CommonModule,
     FormsModule,
-    AgGridModule
+    AgGridModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports:[]
 })

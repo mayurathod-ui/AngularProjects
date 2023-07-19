@@ -3,8 +3,7 @@
         <h4 class="mb-0">Employee Directory</h4>
     </div>
     <div class="col-auto ms-auto">
-        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
-            Employee</button>
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Employee</button>
     </div>
 </div>
 
@@ -53,7 +52,21 @@
     </div>
 </div>
 
-<div class="employee-list-wrap mt-4">
+<div class="row mt-4">
+    <div class="col-auto ms-auto">
+        <div class="d-flex align-items-center">
+            <p class="mb-0 me-4 text-grey">Showing 0 of 0</p>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary btn-sm" for="btnradio1"><i class="bi bi-grid-3x3"></i></label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-secondary btn-sm" for="btnradio2"><i class="bi bi-list-task"></i></label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="employee-list-wrap mt-2">
     <div class="employee-box">
         <div class="card p-3 position-relative">
             <div class="card-body">
@@ -198,98 +211,102 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="first-name" placeholder="First Name" required
-                                autofocus>
-                            <label for="first-name">First Name</label>
+                <form name="ef" [formGroup]="empForm">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-label-group">
+                                <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                                    placeholder="First Name" required autofocus>
+                                <label for="firstName">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-label-group">
+                                <input type="text" class="form-control" id="lastName" formControlName="lastName"
+                                    placeholder="Last Name" required autofocus>
+                                <label for="lastName">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-label-group">
+                                <input type="text" class="form-control" id="email" formControlName="email"
+                                    placeholder="Email" required autofocus>
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-label-group">
+                                <input type="text" class="form-control" id="mobileNo" formControlName="mobileNo"
+                                    placeholder="Mobile No." required autofocus>
+                                <label for="mobileNo">Mobile No.</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-label-group">
+                                <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth"
+                                    placeholder="Date of Birth" required autofocus>
+                                <label for="dateOfBirth">Date of Birth</label>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="me-4">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="male" id="male"
+                                    formControlName="gender" value="male">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" id="female"
+                                    formControlName="gender" value="female">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-label-group form-input-select">
+                                <label for="jobTitle">JOB TITLE</label>
+                                <select class="form-select border-0" id="jobTitle" formControlName="jobTitle">
+                                    <option *ngFor="let title of jobtitle" [value]="title">{{title}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-label-group form-input-select">
+                                <label for="Department">Department</label>
+                                <select class="form-select border-0" id="Department" formControlName="Department">
+                                    <option *ngFor="let depart of department" [value]="depart">{{depart | titlecase}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-label-group">
+                                <input type="text" class="form-control" id="bloodGroup" formControlName="bloodGroup"
+                                    placeholder="Blood Group" required autofocus>
+                                <label for="bloodGroup">Blood Group</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-label-group">
+                                <input type="text" class="form-control" id="location" formControlName="location"
+                                    placeholder="Location" required autofocus>
+                                <label for="location">Location</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-label-group">
+                                <input type="text" class="form-control" id="address" formControlName="address"
+                                    placeholder="Address" required autofocus>
+                                <label for="address">Address</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="last-name" placeholder="Last Name" required
-                                autofocus>
-                            <label for="last-name">Last Name</label>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary w-100" (click)="onSubmit()">Save
+                                changes</button>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="email" placeholder="Email" required autofocus>
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="mobileNo" placeholder="Mobile No." required
-                                autofocus>
-                            <label for="mobileNo">Mobile No.</label>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-label-group">
-                            <input type="date" class="form-control" id="dateOfBirth" placeholder="Date of Birth"
-                                required autofocus>
-                            <label for="dateOfBirth">Date of Birth</label>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <label class="me-4">Gender</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="male"
-                                value="male">
-                            <label class="form-check-label" for="male">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="female"
-                                value="female">
-                            <label class="form-check-label" for="female">Female</label>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-label-group form-input-select">
-                            <label for="Position">JOB TITLE</label>
-                            <select class="form-select border-0">
-                                <option *ngFor="let title of jobtitle" [value]="title">{{title}}</option>  
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-label-group form-input-select">
-                            <label for="Department">Department</label>
-                            <select class="form-select border-0">
-                                <option>Designer</option>
-                                <option>Developer</option>
-                                <option>HR</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="bloodGroup" placeholder="Blood Group" required
-                                autofocus>
-                            <label for="bloodGroup">Blood Group</label>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="location" placeholder="Location" required
-                                autofocus>
-                            <label for="location">Location</label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="address" placeholder="Address" required
-                                autofocus>
-                            <label for="address">Address</label>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                </form>
             </div>
         </div>
     </div>
