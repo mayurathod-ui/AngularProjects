@@ -8,19 +8,42 @@
 @import 'bootstrap/scss/bootstrap';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import './assets/scsss/form-inputs';
+
 :root {
     --bs-btn-bg: #005CA8 !important;
     --grey-text: #a5a5a5;
+    --body-bg: #F5F7FA;
+    --border-color: #dee2e6;
+
+    --profileclr1: #0093E9;
+    --profileclr2: #80D0C7;
+    --profileclr3: #FF9A8B;
+    --profileclr4: #FF6A88;
+    --profileclr5: #21D4FD;
+    --profileclr6: #B721FF;
+    --profileclr7: #F4D03F;
+    --profileclr8: #16A085;
+    --profileclr9: #FAACA8;
+    --profileclr10: #DDD6F3;
+    --profileclr11: #FAD961;
+    --profileclr12: #F76B1C;
+    --profileclr13: #FF3CAC;
+    --profileclr14: #784BA0;
+    --profileclr15: #2B86C5;
+    --gredient-deg: 132deg;
 }
 
-.text-grey{color: var(--grey-text);}
+.text-grey {
+    color: var(--grey-text);
+}
 
 body,
 html {
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    background-color: #F5F7FA;
+    background-color: var(--body-bg);
+    height: 100%;
 }
 
 .header {
@@ -34,6 +57,7 @@ html {
 .middle-section {
     padding-top: 72px;
     position: relative;
+    height: 100%;
 
     // width: 100vw;
     .sidebar-section {
@@ -48,11 +72,13 @@ html {
     }
 
     .main-content {
-        width: calc(100% - 260px);
-        margin-left: 260px;
-        min-height: calc(100vh - 72px);
         display: flex;
         flex-direction: column;
+        margin-left: 260px;
+        width: calc(100% - 260px);
+        height: 100%;
+        min-height: calc(100vh - (72px + 42px));
+        padding-bottom: 42px;
 
         .main-section {
             flex: 1;
@@ -62,7 +88,12 @@ html {
 
 .footer {
     padding: 10px 20px;
-    color: #b5b5b5;
+    color: var(--border-color);
+    position: fixed;
+    bottom: 0;
+    width: calc(100vw - 260px);
+    background-color: var(--body-bg);
+    z-index: 99;
 }
 
 .header-section {
@@ -75,6 +106,41 @@ html {
         cursor: pointer;
         padding: 5px;
     }
+}
+
+.profile1 {
+    background: linear-gradient(var(--gredient-deg), var(--profileclr1), var(--profileclr2));
+    color: #FFF;
+}
+
+.profile2 {
+    background: linear-gradient(var(--gredient-deg), var(--profileclr3), var(--profileclr4));
+    color: #FFF;
+}
+
+.profile3 {
+    background: linear-gradient(var(--gredient-deg), var(--profileclr5), var(--profileclr6));
+    color: #FFF;
+}
+
+.profile4 {
+    background: linear-gradient(var(--gredient-deg), var(--profileclr7), var(--profileclr8));
+    color: #FFF;
+}
+
+.profile5 {
+    background: linear-gradient(var(--gredient-deg), var(--profileclr9), var(--profileclr10));
+    color: #FFF;
+}
+
+.profile6 {
+    background: linear-gradient(var(--gredient-deg), var(--profileclr11), var(--profileclr12));
+    color: #FFF;
+}
+
+.profile7 {
+    background: linear-gradient(var(--gredient-deg), var(--profileclr13), var(--profileclr14), var(--profileclr15));
+    color: #FFF;
 }
 
 .todoList {
@@ -155,7 +221,8 @@ html {
                     text-align: left;
                     padding: 0;
                 }
-                .dropdown-menu{
+
+                .dropdown-menu {
                     width: 200px;
                     transform: translate(-15px, 30px) !important;
                     border-radius: 3px;
@@ -240,6 +307,12 @@ html {
     }
 }
 
+.emp-profile-initial {
+    font-size: 1.75rem;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
 .emp-details {
     text-align: center;
     margin-top: 15px;
@@ -276,40 +349,99 @@ html {
     z-index: 9;
 }
 
-.emp-details-popover {
-    position: absolute;
-    right: 0;
-    width: 300px;
-    transform: translate(299px, -15px);
-    z-index: 99;
-    background: #FFFF;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.175);
-    border: 1px solid rgba(0, 0, 0, 0.175);
-    padding: 30px 20px;
-    display: none;
-    &.show{
-        display: block;
-    }
+.emp-card {
+    .emp-details-popover {
+        position: absolute;
+        right: 0;
+        width: 300px;
+        transform: translate(299px, -15px);
+        z-index: 99;
+        background: #FFFF;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.175);
+        border: 1px solid rgba(0, 0, 0, 0.175);
+        padding: 30px 20px;
+        display: none;
 
-    .emp-popover-img {
-        position: relative;
-        margin-bottom: 10px;
+        // inset: 0px auto 0px auto;
+        &.show {
+            display: block;
+        }
 
-        .available {
-            transform: translate(-73px, -5px);
+        .emp-popover-img {
+            position: relative;
+            margin-bottom: 10px;
+            width: 50px;
+            height: 50px;
+
+            .available {
+                transform: translate(-73px, -5px);
+            }
+        }
+
+        .emp-more-details {
+            display: flex;
+            flex-direction: column;
+
+            .small {
+                font-size: 12px;
+                color: var(--grey-text);
+            }
+
+            span:nth-child(2) {
+                font-weight: 600;
+            }
         }
     }
 
-    .emp-more-details {
-        display: flex;
-        flex-direction: column;
-
-        .small {
-            font-size: 12px;
-            color: var(--grey-text);
+    &:hover {
+        .emp-details-popover {
+            display: block;
         }
-        span:nth-child(2){
-            font-weight: 600;
+    }
+}
+
+
+.mr-scroll-y {
+    // &.nav-wrap{
+    //     height: calc(100% - 60px);
+    //     overflow: auto;
+    // }
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+
+    &.mr-scroll {
+        &::-webkit-scrollbar {
+            background-color: transparent;
+            // width: 0px;
+            width: 5px;
+        }
+
+        // &::-webkit-scrollbar-thumb {
+        //     background: #dadce0;
+        // }
+        &:hover {
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: rgba(0, 0, 0, 0.25);
+                transition: all .5s;
+            }
+        }
+
+        @media (hover: none) {
+            .scrollbox {
+                &::-webkit-scrollbar {
+                    width: 5px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: rgba(0, 0, 0, 0.15);
+                    transition: all .5s;
+                }
+            }
         }
     }
 }

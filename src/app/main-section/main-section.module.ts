@@ -5,7 +5,8 @@ import { OfflinePreferencesComponent } from './offline-preferences/offline-prefe
 import { DirectoryComponent } from './employees-directory/directory/directory.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AgGridModule} from 'ag-grid-angular';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { EmployeeListComponent } from './employees-directory/employee-list/employee-list.component'
 
 
 
@@ -13,7 +14,8 @@ import {HttpClientModule} from '@angular/common/http'
   declarations: [
     TodoListComponent,
     OfflinePreferencesComponent,
-    DirectoryComponent
+    DirectoryComponent,
+    EmployeeListComponent
   ],
   imports: [
     CommonModule,

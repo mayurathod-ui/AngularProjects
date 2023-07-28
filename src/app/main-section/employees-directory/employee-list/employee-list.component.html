@@ -1,0 +1,84 @@
+<div class="row mt-4">
+    <div class="col-auto ms-auto">
+        <div class="d-flex align-items-center">
+            <p class="mb-0 me-4 text-grey">Showing {{getDataApi.length}} of {{getDataApi.length}}</p>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary btn-sm" for="btnradio1"><i class="bi bi-grid-3x3"></i></label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-secondary btn-sm" for="btnradio2"><i class="bi bi-list-task"></i></label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="employee-list-wrap mt-2">
+    <div class="employee-box">
+        <div class="card p-3 position-relative emp-card" *ngFor="let employee of getDataApi; let i = index"
+            (click)="show_empDetails(i)">
+            <div class="card-body">
+                <div class="emp-top-section">
+                    <!-- <div class="emp-img">
+                        <img src="assets/Images//employee-img/1.JPEG">
+                    </div> -->
+                    <div class="emp-img" [ngClass]="getRandomClass()"><span
+                            class="emp-profile-initial">{{employee.initials}}</span></div>
+                    <span class="available"></span>
+                </div>
+                <div class="emp-details">
+                    <p class="emp-name">{{employee.firstName}} {{employee.lastName}}</p>
+                    <p class="emp-position">{{employee.jobTitle}}</p>
+                </div>
+            </div>
+            <div class="emp-details-popover">
+                <!-- [ngClass]="{'show': employee.isPopover}" -->
+                <div class="emp-details-popover-header">
+                    <div class="emp-popover-img">
+                        <div class="emp-img">
+                            <img src="assets/Images//employee-img/1.JPEG">
+                        </div>
+                        <span class="available"></span>
+                    </div>
+                    <div class="emp-details">
+                        <p class="emp-name">{{employee.firstName}} {{employee.lastName}}</p>
+                        <p class="emp-position">{{employee.jobTitle}}</p>
+                    </div>
+                </div>
+                <div class="emp-more-details mt-4">
+                    <label class="mb-3">
+                        <span class="d-block small">Department</span>
+                        <span>{{employee.Department}}</span>
+                    </label>
+                    <div class="d-flex">
+                        <label class="mb-3 w-50">
+                            <span class="d-block small">Date of Birth</span>
+                            <span>{{employee.dateOfBirth}}</span>
+                        </label>
+                        <label class="mb-3 w-50">
+                            <span class="d-block small">Mobile</span>
+                            <span>{{employee.mobileNo}}</span>
+                        </label>
+                    </div>
+                    <label class="mb-3">
+                        <span class="d-block small">Email</span>
+                        <span>{{employee.email}}</span>
+                    </label>
+                    <div class="d-flex">
+                        <label class="mb-3 w-50">
+                            <span class="d-block small">Blood Group</span>
+                            <span>{{employee.bloodGroup}}</span>
+                        </label>
+                        <label class="mb-3 w-50">
+                            <span class="d-block small">Location</span>
+                            <span>{{employee.location}}</span>
+                        </label>
+                    </div>
+                    <label>
+                        <span class="d-block small">Address</span>
+                        <span>{{employee.address}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
