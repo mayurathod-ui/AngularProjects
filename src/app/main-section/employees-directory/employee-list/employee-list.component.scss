@@ -1,0 +1,47 @@
+::ng-deep .popover-body {
+    background-color: black;
+    color: white;
+    width: 275px;
+    border-radius: 4px;
+}
+
+::ng-deep .bs-popover-end {
+    .popover-arrow{
+        &::before{
+            border-right-color:black
+        }
+        &::after {
+            border-right-color:black
+        }
+    }    
+}
+::ng-deep.bs-popover-top{
+    .popover-arrow{
+        &::before{
+            border-top-color:black
+        }
+        &::after {
+            border-top-color:black
+        }
+    }
+}
+::ng-deep.bs-popover-start{
+    .popover-arrow{
+        &::before{
+            border-left-color:black
+        }
+        &::after {
+            border-left-color:black
+        }
+    }
+}
+::ng-deep.bs-popover-bottom{
+    .popover-arrow{
+        &::before{
+            border-bottom-color:black
+        }
+        &::after {
+            border-bottom-color:black
+        }
+    }
+}

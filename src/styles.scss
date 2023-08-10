@@ -108,38 +108,33 @@ html {
     }
 }
 
-.profile1 {
+.Management {
     background: linear-gradient(var(--gredient-deg), var(--profileclr1), var(--profileclr2));
     color: #FFF;
 }
 
-.profile2 {
+.Development {
     background: linear-gradient(var(--gredient-deg), var(--profileclr3), var(--profileclr4));
     color: #FFF;
 }
 
-.profile3 {
+.TaxAnalysis {
     background: linear-gradient(var(--gredient-deg), var(--profileclr5), var(--profileclr6));
     color: #FFF;
 }
 
-.profile4 {
+.SAQA {
     background: linear-gradient(var(--gredient-deg), var(--profileclr7), var(--profileclr8));
     color: #FFF;
 }
 
-.profile5 {
+.HRFinance {
     background: linear-gradient(var(--gredient-deg), var(--profileclr9), var(--profileclr10));
     color: #FFF;
 }
 
-.profile6 {
+.Training {
     background: linear-gradient(var(--gredient-deg), var(--profileclr11), var(--profileclr12));
-    color: #FFF;
-}
-
-.profile7 {
-    background: linear-gradient(var(--gredient-deg), var(--profileclr13), var(--profileclr14), var(--profileclr15));
     color: #FFF;
 }
 
@@ -189,6 +184,9 @@ html {
 
 .card {
     border-radius: 3px;
+    .card-body{
+        border-color: var(--border-color);
+    }
 }
 
 .filter-wrap {
@@ -201,7 +199,7 @@ html {
         width: 200px;
         padding: 5px 15px;
         box-sizing: border-box;
-        border-right: 1px solid rgba(0, 0, 0, 0.175);
+        border-left: 1px solid var(--border-color);
 
         .lbl-filter {
             font-size: 13px;
@@ -227,6 +225,16 @@ html {
                     transform: translate(-15px, 30px) !important;
                     border-radius: 3px;
                 }
+            }            
+        }
+
+        &.last-filter{
+            .filter{
+                &.dropdown {    
+                    .dropdown-menu {
+                        transform: translate(15px, 30px) !important;
+                    }
+                }     
             }
         }
     }
@@ -274,6 +282,7 @@ html {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        position: relative;
 
         .card {
             border-radius: 0;
@@ -301,10 +310,19 @@ html {
     border: 2px solid #FFF;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.175);
     position: relative;
-
     img {
         max-width: 100%;
     }
+}
+
+.profile-50 {
+    width: 50px;
+    height: 50px;
+}
+
+.profile-32{
+    width: 32px;
+    height: 32px;
 }
 
 .emp-profile-initial {
@@ -349,50 +367,46 @@ html {
     z-index: 9;
 }
 
-.emp-card {
-    .emp-details-popover {
-        position: absolute;
-        right: 0;
-        width: 300px;
-        transform: translate(299px, -15px);
-        z-index: 99;
-        background: #FFFF;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.175);
-        border: 1px solid rgba(0, 0, 0, 0.175);
-        padding: 30px 20px;
-        display: none;
-
-        // inset: 0px auto 0px auto;
-        &.show {
-            display: block;
-        }
-
+.emp-details-popover {
+    width: 100%;
+    font-size: 1rem;
+    .emp-details-popover-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         .emp-popover-img {
             position: relative;
-            margin-bottom: 10px;
+            margin-bottom: 0;
             width: 50px;
-            height: 50px;
-
+            height: 50px;    
             .available {
                 transform: translate(-73px, -5px);
             }
-        }
-
-        .emp-more-details {
-            display: flex;
-            flex-direction: column;
-
-            .small {
-                font-size: 12px;
-                color: var(--grey-text);
-            }
-
-            span:nth-child(2) {
-                font-weight: 600;
-            }
+        }    
+        .emp-details{
+            margin-top: 0;
+            margin-left: 15px;
         }
     }
 
+    
+
+    .emp-more-details {
+        display: flex;
+        flex-direction: column;
+
+        .small {
+            font-size: 12px;
+            color: var(--grey-text);
+        }
+
+        span:nth-child(2) {
+            font-weight: 600;
+        }
+    }
+}
+
+.emp-card {
     &:hover {
         .emp-details-popover {
             display: block;

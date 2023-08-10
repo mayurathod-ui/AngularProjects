@@ -1,21 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "employees": [
     {
       "firstName": "Rathod",
@@ -74,116 +57,32 @@
       "id": 4
     },
     {
-      "firstName": "Bhargav ",
+      "firstName": "Bhargav",
       "lastName": "Laiya",
       "email": "bhargav.laiya@inventyv.com",
       "mobileNo": "9714100483",
-      "dateOfBirth": "2005-08-14",
+      "dateOfBirth": "2000-12-31",
       "gender": "male",
       "jobTitle": "Jr. QA",
-      "Department": "Development",
+      "Department": "SAQA",
       "bloodGroup": "O+",
       "location": "Ahmedabad",
       "address": "Ahmedabad",
       "id": 5
     },
     {
-      "firstName": "Rathod ",
-      "lastName": "Test",
-      "email": "rathodtest@inventyv.com",
-      "mobileNo": "9898898888",
-      "dateOfBirth": "2000-08-10",
-      "gender": "male",
-      "jobTitle": "Project Consultant",
-      "Department": "Development",
-      "bloodGroup": "AB+",
+      "firstName": "Gayatri",
+      "lastName": "Sarvaiya",
+      "email": "gayatri.sarvaiya@inventyv.com",
+      "mobileNo": "9898692373",
+      "dateOfBirth": "1985-01-26",
+      "gender": "female",
+      "jobTitle": "Project Manager",
+      "Department": "Management",
+      "bloodGroup": "B+",
       "location": "Ahmedabad",
       "address": "Ahmedabad",
       "id": 6
-    },
-    {
-      "firstName": "Rathod",
-      "lastName": "Mayur",
-      "email": "rathod.gamer@gmail.com",
-      "mobileNo": "9033463336",
-      "dateOfBirth": "1985-08-18",
-      "gender": "male",
-      "jobTitle": "Lead UI Designer",
-      "Department": "Development",
-      "bloodGroup": "B+",
-      "location": "Ahmedabad",
-      "address": "Ahmedabad",
-      "id": 17
-    },
-    {
-      "firstName": "Madhu",
-      "lastName": "Bhuva",
-      "email": "madhu@gmail.com",
-      "mobileNo": "123456789",
-      "dateOfBirth": "1989-06-01",
-      "gender": "male",
-      "jobTitle": "Sr. Designer",
-      "Department": "Development",
-      "bloodGroup": "O+",
-      "location": "Ahmedabad",
-      "address": "Ahmedabad",
-      "id": 8
-    },
-    {
-      "firstName": "Jayesh",
-      "lastName": "Maisuriya",
-      "email": "jayesh@gmail.com",
-      "mobileNo": "9662087397",
-      "dateOfBirth": "1989-12-02",
-      "gender": "male",
-      "jobTitle": "Sr. Designer",
-      "Department": "Development",
-      "bloodGroup": "O+",
-      "location": "Ahmedabad",
-      "address": "Ahmedabad",
-      "id": 9
-    },
-    {
-      "firstName": "Rajvi ",
-      "lastName": "Navlakha",
-      "email": "rajvi.navlakha@inventyv.com",
-      "mobileNo": "9428738106",
-      "dateOfBirth": "2005-08-28",
-      "gender": "female",
-      "jobTitle": "Jr. Software Developer",
-      "Department": "Development",
-      "bloodGroup": "B+",
-      "location": "Ahmedabad",
-      "address": "Ahmedabad",
-      "id": 10
-    },
-    {
-      "firstName": "Bhargav ",
-      "lastName": "Laiya",
-      "email": "bhargav.laiya@inventyv.com",
-      "mobileNo": "9714100483",
-      "dateOfBirth": "2005-08-14",
-      "gender": "male",
-      "jobTitle": "Jr. QA",
-      "Department": "Development",
-      "bloodGroup": "O+",
-      "location": "Ahmedabad",
-      "address": "Ahmedabad",
-      "id": 11
-    },
-    {
-      "firstName": "Rathod ",
-      "lastName": "Test",
-      "email": "rathodtest@inventyv.com",
-      "mobileNo": "9898898888",
-      "dateOfBirth": "2000-08-10",
-      "gender": "male",
-      "jobTitle": "Project Consultant",
-      "Department": "Development",
-      "bloodGroup": "AB+",
-      "location": "Ahmedabad",
-      "address": "Ahmedabad",
-      "id": 12
     }
   ]
 }

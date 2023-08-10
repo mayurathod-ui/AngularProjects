@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
 
@@ -7,9 +7,17 @@ import { EmployeeService } from '../../services/employee.service';
   templateUrl: './directory.component.html',
   styleUrls: ['./directory.component.scss']
 })
-export class DirectoryComponent {
-
+export class DirectoryComponent implements OnInit {
+  public department:any;
   empForm: FormGroup;
+  
+  public selectedDepartment: string = 'Select Department';
+  public selectJobTitle: string = 'Select Job Title';
+  public empObject: any = {firstName:'', lastName:'', department:'' };
+  public employeeData : any = [];
+  public search: string = ' ';
+
+  public departGetData = this._empService.department.values;
 
   public jobtitle: string[] = [
     'Project Manager',
@@ -17,25 +25,16 @@ export class DirectoryComponent {
     'Team Leader',
     'Jr. Software Developer',
     'Sr. Software Developer',
-    'Lead UI Designer',    
+    'Lead UI Designer',
     'Sr. Designer',
     'QA',
     'Jr. QA',
     'Project Consultant',
   ];
 
-  public department: string[] = [
-    'Management',
-    'Development',    
-    'Tax Analysis',
-    'Sales Analysis and QA',
-    'HR and Finance',
-    'Training',
-  ]
-
-  constructor(private _fb: FormBuilder, private _empService:EmployeeService){
+  constructor(private _fb: FormBuilder, public _empService: EmployeeService) {
     this.empForm = this._fb.group({
-      firstName:'',
+      firstName: '',
       lastName: '',
       email: '',
       mobileNo: '',
@@ -46,21 +45,50 @@ export class DirectoryComponent {
       bloodGroup: '',
       location: '',
       address: '',
-    })
+    });
+    this.department = this._empService.department;
+    this._empService.getEmployeeList();
+    
   }
 
-  onSubmit(){
-    if(this.empForm.valid){
+  filterEmp(search:any){
+    const filterEmpData = this._empService.getDataApi.filter((f:any) => f.firstName.toLowerCase().includes(search.toLowerCase()));
+    if(filterEmpData.length !== 0){
+     this.employeeData = filterEmpData;   
+    }else{
+      this._empService.getEmployeeList();
+    }
+  }
+
+
+  clearFilter(){
+    this.empObject = '';    
+    this.employeeData = this._empService.getDataApi;
+    
+  }
+
+  filterByDepart(event:any){
+    console.log(event);
+  }
+
+  onSubmit() {
+    if (this.empForm.valid) {
       const formData = this.empForm.value;
       this._empService.addEmployee(formData).subscribe({
-        next: (val:any)=>{
-          alert('Employee added successfully!');   
-          this.empForm.reset();       
+        next: (val: any) => {
+          alert('Employee added successfully!');
+          this.empForm.reset();
         },
-        error: (err:any) => {
-          console.error(err);          
+        error: (err: any) => {
+          console.error(err);
         }
       })
-    }    
+    }
+  }
+
+  ngOnInit(): void {
+    setTimeout(()=>{
+      this.employeeData = this._empService.getDataApi;
+    },100)
   }
 }

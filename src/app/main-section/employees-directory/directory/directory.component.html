@@ -11,22 +11,41 @@
 
 <div class="card mt-2">
     <div class="card-body p-0">
-        <div class="filter-wrap">
+        <div class="filter-wrap">            
+            <div class="filter-icon">
+                <i class="bi bi-search"></i>
+            </div>
+            <div class="search-inner">
+                <input class="search-input form-control" type="text" placeholder="Search" [(ngModel)]="empObject.firstName" (ngModelChange)="filterEmp($event)">
+            </div>
+            <div class="filter-icon">
+                <i class="bi bi-x-lg cancel" (click)="clearFilter()" *ngIf="empObject.firstName"></i>
+            </div>
             <div class="filter-inner">
                 <label class="lbl-filter">Department</label>
                 <div class="filter dropdown">
-                    <button class="btn btn-secondary dropdown-toggle btn-dropdown" type="button"
-                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select Department
+                    <button class="btn btn-secondary dropdown-toggle btn-dropdown" type="button" id="dropdownMenuButton1" [(ngModel)]="departGetData" (ngModelChange)="filterByDepart($event)" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ selectedDepartment }} 
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="">Action</a></li>
-                        <li><a class="dropdown-item" href="">Another action</a></li>
-                        <li><a class="dropdown-item" href="">Something else here</a></li>
+                        <li class="" *ngFor="let depart of department"><a class="dropdown-item" (click)="selectedDepartment = depart.value">{{depart.value}}</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="filter-inner">
+            {{departGetData | json}}
+            <div class="filter-inner last-filter">
+                <label class="lbl-filter">Job Title</label>
+                <div class="filter dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn-dropdown" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ selectJobTitle }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li  *ngFor="let title of jobtitle"><a class="dropdown-item" (click)="selectJobTitle = title">{{title}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="filter-inner">
                 <label class="lbl-filter">Location</label>
                 <div class="filter dropdown">
                     <button class="btn btn-secondary dropdown-toggle btn-dropdown" type="button"
@@ -34,27 +53,16 @@
                         Select Location
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="">Action</a></li>
-                        <li><a class="dropdown-item" href="">Another action</a></li>
-                        <li><a class="dropdown-item" href="">Something else here</a></li>
+                        <li *ngFor="let getLoc of _empService.getDataApi"><a class="dropdown-item" href="">{{getLoc.location}}</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="filter-icon">
-                <i class="bi bi-search"></i>
-            </div>
-            <div class="search-inner">
-                <input class="search-input form-control" type="text" placeholder="Search">
-            </div>
-            <div class="filter-icon">
-                <i class="bi bi-x-lg cancel"></i>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
 
 <div class="w-100 float-left">
-    <app-employee-list></app-employee-list>
+    <app-employee-list [employeeData]="employeeData"></app-employee-list>
 </div>
 
 
@@ -71,7 +79,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-label-group">
-                                <input type="text" class="form-control is-valid" id="firstName"
+                                <input type="text" class="form-control" id="firstName"
                                     formControlName="firstName" placeholder="First Name" required autofocus>
                                 <label for="firstName">First Name</label>
                             </div>
@@ -107,19 +115,17 @@
                         <div class="col-12 mb-3">
                             <label class="me-4">Gender</label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male" id="male"
-                                    formControlName="gender" value="male">
+                                <input class="form-check-input" type="radio" name="gender" id="male" formControlName="gender" value="male">
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female" id="female"
-                                    formControlName="gender" value="female">
+                                <input class="form-check-input" type="radio" name="gender" id="female" formControlName="gender" value="female">
                                 <label class="form-check-label" for="female">Female</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-label-group form-input-select">
-                                <label for="jobTitle">JOB TITLE</label>
+                                <label for="jobTitle">Job Title</label>
                                 <select class="form-select border-0" id="jobTitle" formControlName="jobTitle">
                                     <option *ngFor="let title of jobtitle" [value]="title">{{title}}</option>
                                 </select>
@@ -129,9 +135,8 @@
                             <div class="form-label-group form-input-select">
                                 <label for="Department">Department</label>
                                 <select class="form-select border-0" id="Department" formControlName="Department">
-                                    <option *ngFor="let depart of department" [value]="depart">{{depart | titlecase}}
-                                    </option>
-                                </select>
+                                    <option *ngFor="let depart of department" [value]="depart.key">{{depart.value}}</option>                                    
+                                </select>                                
                             </div>
                         </div>
                         <div class="col-6">
